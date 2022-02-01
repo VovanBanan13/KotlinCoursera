@@ -1,0 +1,8 @@
+.idea
+build
+gradle
+.gradle
+build/
+Mastermind/Task/build
+Mastermind/Task/out
+*.iml
