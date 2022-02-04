@@ -32,12 +32,6 @@ data class Rational
             return Rational.create(n.toBigInteger(), d.toBigInteger())
         }
     }
-//    private fun normalize(n: BigInteger, d: BigInteger) : Rational {
-//        require(d != ZERO) { "Знаменатель не может равняться нулю"}
-//        val g = n.gcd(d)
-//        val s = d.signum().toBigInteger()
-//        return Rational(n/g*s, d/g*s)
-//    }
 
     operator fun unaryMinus(): Rational = create(-n, d)
     operator fun times(other: Rational): Rational =
@@ -49,9 +43,11 @@ data class Rational
     operator fun minus(other: Rational): Rational =
         (n * other.d - other.n * d).divBy(other.d * d)
 
-//    override fun toString(): String {
-//
-//    }
+    override fun toString(): String {
+        return if (d.toString() == "1") {
+            "$n"
+        } else "$n/$d"
+    }
 
 
 
@@ -83,8 +79,6 @@ interface ClosedRange<T: Comparable<T>> {
     operator fun contains(value: T): Boolean =
         value >= start && value <= endInclusive
 }
-//operator fun <T : Comparable<T>> T.rangeTo(that: T): ClosedRange<T> =
-//    ComparableRange(this, that)
 
 fun main() {
     val half = 1 divBy 2
