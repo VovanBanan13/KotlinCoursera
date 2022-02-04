@@ -1,7 +1,5 @@
 package rationals
 
-import rationals.Rational.Companion.divBy
-import rationals.Rational.Companion.toRational
 import java.math.BigInteger
 import java.math.BigInteger.ONE
 import java.math.BigInteger.ZERO
@@ -9,6 +7,7 @@ import java.math.BigInteger.ZERO
 @Suppress("DataClassPrivateConstructor")
 data class Rational
     private constructor(val n: BigInteger, val d: BigInteger) : Comparable<Rational> {
+
     companion object {
         fun create(n: BigInteger, d: BigInteger): Rational = normalize(n, d)
         fun normalize(n: BigInteger, d: BigInteger) : Rational {
@@ -16,20 +15,6 @@ data class Rational
             val g = n.gcd(d)
             val s = d.signum().toBigInteger()
             return Rational(n/g*s, d/g*s)
-        }
-        infix fun BigInteger.divBy(d: BigInteger) =
-            Rational.create(this, d)
-        infix fun Int.divBy(d: Int) =
-            Rational.create(this.toBigInteger(), d.toBigInteger())
-        infix fun Long.divBy(d: Long) =
-            Rational.create(this.toBigInteger(), d.toBigInteger())
-
-        fun String.toRational(): Rational {
-            if (!contains("/")) {
-                return Rational.create(toBigInteger(), ONE)
-            }
-            val (n, d) = split("/")
-            return Rational.create(n.toBigInteger(), d.toBigInteger())
         }
     }
 
@@ -48,8 +33,6 @@ data class Rational
             "$n"
         } else "$n/$d"
     }
-
-
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -71,6 +54,21 @@ data class Rational
     override fun compareTo(other: Rational): Int {
         return (n * other.d - other.n * d).signum()
     }
+}
+
+infix fun BigInteger.divBy(d: BigInteger) =
+    Rational.create(this, d)
+infix fun Int.divBy(d: Int) =
+    Rational.create(this.toBigInteger(), d.toBigInteger())
+infix fun Long.divBy(d: Long) =
+    Rational.create(this.toBigInteger(), d.toBigInteger())
+
+fun String.toRational(): Rational {
+    if (!contains("/")) {
+        return Rational.create(toBigInteger(), ONE)
+    }
+    val (n, d) = split("/")
+    return Rational.create(n.toBigInteger(), d.toBigInteger())
 }
 
 interface ClosedRange<T: Comparable<T>> {

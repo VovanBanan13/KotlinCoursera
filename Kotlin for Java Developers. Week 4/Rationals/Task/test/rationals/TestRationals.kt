@@ -2,8 +2,6 @@ package rationals
 
 import org.junit.Assert
 import org.junit.Test
-import rationals.Rational.Companion.divBy
-import rationals.Rational.Companion.toRational
 import rationals.TestRationals.ComparisonOperation.*
 
 class TestRationals {

@@ -1,8 +1,5 @@
 type: edu
 files:
-- name: partId
-  visible: false
-  learner_created: false
 - name: assignmentKey
   visible: false
   learner_created: false
@@ -266,10 +263,13 @@ files:
         fun test4InRange6() = testInRange("687/969", "33/275", "31/50", false)
     }
   learner_created: false
+- name: partId
+  visible: true
+  learner_created: true
 feedback_link: https://www.coursera.org/learn/kotlin-for-java-developers/programming/FNjea/rationals/discussions
 status: Unchecked
 feedback:
   message: Submission successful, please <a href="https://www.coursera.org/learn/kotlin-for-java-developers/programming/FNjea/rationals/submission">check
     the status on Coursera</a>
-  time: Fri, 04 Feb 2022 06:33:46 UTC
+  time: Fri, 04 Feb 2022 07:22:36 UTC
 record: -1
